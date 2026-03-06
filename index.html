@@ -1,0 +1,2286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bel·la Estètica i Estilistes — Vilafranca del Penedès</title>
+  <meta name="description" content="Centro de estética y peluquería en Vilafranca del Penedès. Servicios de peluquería, tratamientos faciales, corporales, manicura y pedicura. ¡Reserva ahora!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --white: #FFFFFF;
+      --black: #0A0A0A;
+      --oak: #A88B5A;
+      --gold: #D4AF37;
+      --gold-light: #E8D48B;
+      --off-white: #FAFAF8;
+      --gray-light: #F2F0EC;
+      --gray: #888;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Montserrat', 'Segoe UI', sans-serif;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--sans);
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    ul { list-style: none; }
+
+    /* ========== UTILITY ========== */
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+    .section-pad { padding: 80px 0; }
+    .section-pad-lg { padding: 100px 0; }
+    .text-center { text-align: center; }
+
+    .section-label {
+      font-family: var(--sans);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--oak);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+    .section-subtitle {
+      font-size: .95rem;
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .gold-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--oak));
+      margin: 0 auto 30px;
+      border: none;
+    }
+
+    /* Fade-in animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== NAVBAR ========== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: background .4s, box-shadow .4s, padding .4s;
+    }
+    .navbar.scrolled {
+      background: rgba(255,255,255,.97);
+      box-shadow: 0 2px 30px rgba(0,0,0,.06);
+      padding: 10px 0;
+      backdrop-filter: blur(12px);
+    }
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--white);
+      letter-spacing: 1px;
+      transition: color .4s;
+    }
+    .navbar.scrolled .nav-logo { color: var(--black); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      transition: color .3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--gold);
+      transition: width .3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .navbar.scrolled .nav-links a { color: var(--black); }
+    .navbar.scrolled .nav-links a:hover { color: var(--gold); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 28px;
+      padding: 4px 0;
+      z-index: 1100;
+    }
+    .hamburger span {
+      display: block;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s, background .3s;
+    }
+    .navbar.scrolled .hamburger span { background: var(--black); }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 75%; height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        background: rgba(10,10,10,.97);
+        backdrop-filter: blur(20px);
+        gap: 28px;
+        transition: right .4s cubic-bezier(.77,0,.175,1);
+      }
+      .nav-links.open { right: 0; }
+      .nav-links a { color: var(--white) !important; font-size: .95rem; letter-spacing: 2px; }
+    }
+    @media (max-width: 600px) {
+      .hero-content { padding: 80px 20px 40px; }
+      .hero h1 { font-size: 1.7rem; }
+      .hero-sub { font-size: .8rem; margin-bottom: 10px; }
+      .hero-rating { padding: 8px 16px; margin-bottom: 24px; }
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('./EQUIPO1.jpeg') center top/cover no-repeat;
+      filter: blur(3px);
+      transform: scale(1.05);
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.35) 50%, rgba(0,0,0,.6) 100%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 20px;
+      max-width: 800px;
+    }
+    .hero-logo-wrap {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 30px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(212,175,55,.5);
+      box-shadow: 0 0 60px rgba(212,175,55,.15);
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    .hero-logo-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    .hero h1 .accent { color: var(--gold); font-weight: 500; }
+    .hero-sub {
+      font-size: clamp(.85rem, 2vw, 1rem);
+      color: rgba(255,255,255,.75);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 400;
+      margin-bottom: 36px;
+    }
+    .hero-rating {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(10px);
+      padding: 10px 24px;
+      border-radius: 50px;
+      border: 1px solid rgba(212,175,55,.3);
+      margin-bottom: 36px;
+    }
+    .hero-rating .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; }
+    .hero-rating span { color: rgba(255,255,255,.9); font-size: .85rem; font-weight: 400; }
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-btns .btn {
+      min-width: 220px;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 36px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 50px;
+      transition: all .35s;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--oak));
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(212,175,55,.3);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(212,175,55,.45);
+    }
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,.5);
+      color: var(--white);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,.1);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: float 2s ease-in-out infinite;
+    }
+    .scroll-hint span {
+      font-size: .65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(180deg, rgba(212,175,55,.6), transparent);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-8px); }
+    }
+
+    /* ========== ABOUT ========== */
+    .about { background: var(--off-white); overflow: hidden; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-grid > * { min-width: 0; }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-wrap img {
+      border-radius: 12px;
+      object-fit: cover;
+      width: 100%;
+      aspect-ratio: 4/5;
+      filter: brightness(.65);
+    }
+    .about-img-accent {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 120px; height: 120px;
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      z-index: -1;
+    }
+    .about-text h3 {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+    .about-text {
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    .about-text p {
+      font-size: .92rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+    .about-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 30px;
+    }
+    .about-stat-num {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 500;
+      color: var(--gold);
+    }
+    .about-stat-label {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-img-accent { display: none; }
+    }
+
+    /* ========== TEAM ========== */
+    .team { background: var(--white); }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+    .team-card {
+      text-align: center;
+      cursor: pointer;
+      padding: 30px 20px;
+      border-radius: 16px;
+      transition: transform .4s, box-shadow .4s;
+      background: var(--off-white);
+    }
+    .team-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.08);
+    }
+    .team-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--oak), var(--gold));
+    }
+    .team-card h4 {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .team-card p {
+      font-size: .78rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .team-card .team-cta {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s;
+    }
+    .team-card:hover .team-cta { border-color: var(--gold); }
+    @media (max-width: 992px) {
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .team-grid { grid-template-columns: 1fr; max-width: 320px; margin: 0 auto; }
+    }
+
+    /* ========== SERVICES OVERVIEW ========== */
+    .services { background: var(--black); color: var(--white); }
+    .services .section-title { color: var(--white); }
+    .services .section-subtitle { color: rgba(255,255,255,.5); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    .service-card {
+      padding: 40px 30px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      transition: border-color .35s, transform .35s;
+      background: rgba(255,255,255,.03);
+    }
+    .service-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+    .service-icon {
+      margin-bottom: 20px;
+      display: flex;
+      color: var(--gold);
+    }
+    .service-icon svg { width: 32px; height: 32px; }
+    .icon { width: 18px; height: 18px; vertical-align: -3px; flex-shrink: 0; }
+    .contact-item-icon svg { width: 20px; height: 20px; color: var(--white); }
+    .footer-social svg { width: 18px; height: 18px; }
+    .massage-list .icon { color: var(--gold); }
+    .service-card h4 {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .service-card p {
+      font-size: .85rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.7;
+    }
+    @media (max-width: 768px) {
+      .services-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+    }
+
+    /* Image break sections */
+    .img-break {
+      position: relative;
+      height: 45vh;
+      min-height: 300px;
+      overflow: hidden;
+    }
+    .img-break img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .img-break-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.5);
+    }
+
+    /* ========== MASSAGE / VIDEO ========== */
+    .massage { background: var(--off-white); }
+    .massage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .massage-video-wrap {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.12);
+      max-width: 400px;
+    }
+    .massage-video-wrap video {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+    }
+    .massage-text h3 {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+    .massage-text p {
+      font-size: .92rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+    .massage-list {
+      margin-top: 20px;
+    }
+    .massage-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      font-size: .88rem;
+    }
+    .massage-list li .price {
+      margin-left: auto;
+      font-weight: 600;
+      color: var(--oak);
+    }
+    @media (max-width: 768px) {
+      .massage-grid { grid-template-columns: 1fr; gap: 40px; }
+      .massage-video-wrap { max-width: 100%; }
+    }
+
+    /* ========== REVIEWS ========== */
+    .reviews { background: var(--white); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+    .review-card {
+      padding: 36px;
+      border-radius: 16px;
+      background: var(--off-white);
+      border: 1px solid rgba(0,0,0,.04);
+      transition: box-shadow .3s;
+    }
+    .review-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,.06);
+    }
+    .review-stars {
+      color: var(--gold);
+      font-size: .9rem;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+    .review-card blockquote {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 18px;
+    }
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .review-author-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--oak), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: .8rem;
+      font-weight: 600;
+    }
+    .review-author-name { font-weight: 600; font-size: .85rem; }
+    .review-author-service { font-size: .75rem; color: var(--gray); }
+    @media (max-width: 768px) {
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ========== GIFT CARDS ========== */
+    .giftcards {
+      background: linear-gradient(135deg, var(--black) 0%, #1a1a1a 100%);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .giftcards::before {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border: 2px solid rgba(212,175,55,.06);
+      border-radius: 50%;
+      top: -80px; right: -80px;
+    }
+    .giftcards::after {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      border: 2px solid rgba(212,175,55,.04);
+      border-radius: 50%;
+      bottom: -60px; left: -60px;
+    }
+    .giftcards .section-title { color: var(--white); }
+    .giftcards-content {
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    .giftcards-content p {
+      font-size: .92rem;
+      color: rgba(255,255,255,.6);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .giftcards-note {
+      margin-top: 30px;
+      padding: 24px;
+      border: 1px solid rgba(212,175,55,.25);
+      border-radius: 12px;
+      background: rgba(212,175,55,.05);
+    }
+    .giftcards-note p {
+      font-size: .84rem;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 8px;
+    }
+    .giftcards-note p:last-child { margin-bottom: 0; }
+
+    /* ========== SCHEDULE INDICATOR ========== */
+    .schedule-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border-radius: 50px;
+      border: 1.5px solid var(--oak);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--oak);
+      cursor: pointer;
+      transition: all .3s;
+      background: transparent;
+    }
+    .schedule-btn:hover {
+      background: var(--oak);
+      color: var(--white);
+    }
+
+    /* ========== CONTACT / FOOTER ========== */
+    .contact { background: var(--off-white); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .contact-info h3 {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .contact-item-icon {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--oak), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    .contact-item-text p {
+      font-size: .88rem;
+      color: #555;
+      line-height: 1.6;
+    }
+    .contact-item-text a {
+      color: var(--oak);
+      font-weight: 500;
+      transition: color .3s;
+    }
+    .contact-item-text a:hover { color: var(--gold); }
+    .contact-map {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,.08);
+    }
+    .contact-map iframe {
+      width: 100%;
+      height: 380px;
+      border: none;
+    }
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    .footer {
+      background: var(--black);
+      color: rgba(255,255,255,.5);
+      padding: 40px 0;
+      text-align: center;
+    }
+    .footer p { font-size: .8rem; }
+    .footer a { color: var(--gold); transition: color .3s; }
+    .footer a:hover { color: var(--gold-light); }
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+    .footer-social a {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: border-color .3s, transform .3s;
+    }
+    .footer-social a:hover {
+      border-color: var(--gold);
+      transform: translateY(-3px);
+    }
+
+    /* ========== FLOATING BOOKING BUTTON ========== */
+    .fab-booking {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 900;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--oak));
+      color: var(--white);
+      box-shadow: 0 8px 30px rgba(168,139,90,.4);
+      transition: transform .3s, box-shadow .3s;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .fab-booking .icon { width: 22px; height: 22px; }
+    .fab-booking span { display: none; }
+    .fab-booking:hover {
+      transform: translateY(-3px) scale(1.08);
+      box-shadow: 0 12px 40px rgba(168,139,90,.55);
+    }
+    @media (max-width: 500px) {
+      .fab-booking { width: 50px; height: 50px; bottom: 20px; right: 16px; }
+      .fab-booking .icon { width: 20px; height: 20px; }
+    }
+
+    /* ========== POPUP / MODAL ========== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .35s, visibility .35s;
+      padding: 20px;
+    }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    .modal {
+      background: var(--white);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 560px;
+      max-height: 85vh;
+      overflow-y: auto;
+      transform: translateY(30px) scale(.96);
+      transition: transform .4s cubic-bezier(.22,1,.36,1);
+      box-shadow: 0 30px 80px rgba(0,0,0,.2);
+    }
+    .modal-overlay.active .modal {
+      transform: translateY(0) scale(1);
+    }
+    .modal-header {
+      padding: 28px 32px 20px;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      border-radius: 20px 20px 0 0;
+      z-index: 1;
+    }
+    .modal-header h3 {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    .modal-close {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--gray-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: background .3s;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+    .modal-close:hover { background: #e0ddd7; }
+    .modal-body {
+      padding: 24px 32px 32px;
+    }
+    .modal-body .service-group { margin-bottom: 24px; }
+    .modal-body .service-group h5 {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--oak);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .modal-body .svc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0,0,0,.04);
+    }
+    .modal-body .svc-row:last-child { border-bottom: none; }
+    .svc-name { font-size: .88rem; flex: 1; padding-right: 12px; }
+    .svc-dur { font-size: .78rem; color: var(--gray); margin-right: 16px; white-space: nowrap; }
+    .svc-price { font-weight: 600; color: var(--oak); font-size: .92rem; white-space: nowrap; }
+
+    /* Schedule modal specifics */
+    .schedule-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      font-size: .92rem;
+    }
+    .schedule-row:last-child { border-bottom: none; }
+    .schedule-row .day { font-weight: 500; }
+    .schedule-row .hours { color: var(--gray); }
+    .schedule-row .closed { color: #c0392b; font-weight: 500; }
+
+    /* ========== IMAGE-BANNER BETWEEN SECTIONS ========== */
+    .banner-img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .banner-img { height: 220px; }
+    }
+
+    /* ========== WORK GALLERY STRIP ========== */
+    .work-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .work-strip img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+    @media (max-width: 768px) {
+      .work-strip img { height: 220px; }
+    }
+
+    /* ========== COOKIE BANNER ========== */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 3000;
+      background: rgba(10,10,10,.95);
+      backdrop-filter: blur(16px);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      transform: translateY(100%);
+      transition: transform .5s cubic-bezier(.22,1,.36,1);
+    }
+    .cookie-banner.visible { transform: translateY(0); }
+    .cookie-banner p {
+      font-size: .82rem;
+      color: rgba(255,255,255,.75);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+    .cookie-banner a {
+      color: var(--gold);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .cookie-banner a:hover { color: var(--gold-light); }
+    .cookie-btns {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .cookie-btn {
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: all .3s;
+      cursor: pointer;
+      border: none;
+      font-family: var(--sans);
+    }
+    .cookie-btn-accept {
+      background: linear-gradient(135deg, var(--gold), var(--oak));
+      color: var(--white);
+    }
+    .cookie-btn-accept:hover { box-shadow: 0 4px 16px rgba(212,175,55,.4); }
+    .cookie-btn-reject {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,.25);
+      color: rgba(255,255,255,.7);
+    }
+    .cookie-btn-reject:hover { border-color: rgba(255,255,255,.5); color: var(--white); }
+    @media (max-width: 600px) {
+      .cookie-banner { flex-direction: column; text-align: center; gap: 14px; padding: 18px 16px; }
+    }
+
+    /* ========== LANGUAGE TOGGLE ========== */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-right: 12px;
+    }
+    .lang-btn {
+      padding: 4px 10px;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,.5);
+      border-radius: 4px;
+      transition: all .3s;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--sans);
+    }
+    .lang-btn.active {
+      color: var(--gold);
+      background: rgba(212,175,55,.12);
+    }
+    .lang-btn:hover { color: var(--gold); }
+    .lang-sep {
+      color: rgba(255,255,255,.2);
+      font-size: .65rem;
+      user-select: none;
+    }
+    .navbar.scrolled .lang-btn { color: rgba(0,0,0,.35); }
+    .navbar.scrolled .lang-btn.active { color: var(--gold); background: rgba(212,175,55,.08); }
+    .navbar.scrolled .lang-sep { color: rgba(0,0,0,.12); }
+    @media (max-width: 768px) {
+      .lang-toggle { position: absolute; top: 18px; right: 60px; }
+      .navbar.scrolled .lang-toggle { top: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SVG Icon Sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="i-scissors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 1 0-4 0v5"/><path d="M14 10V4a2 2 0 1 0-4 0v6"/><path d="M10 10.5V6a2 2 0 1 0-4 0v8a8 8 0 0 0 16 0v-4a2 2 0 1 0-4 0"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 20 .5 20 .5s1 4.5-1 10.2A7 7 0 0 1 11 20z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></symbol>
+    <symbol id="i-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.11 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></symbol>
+    <symbol id="i-droplet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+    <symbol id="i-smartphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></symbol>
+  </svg>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#hero" class="nav-logo">Bel·la</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about" data-i18n="nav_about">Nosotros</a>
+        <a href="#team" data-i18n="nav_team">Equipo</a>
+        <a href="#services" data-i18n="nav_services">Servicios</a>
+        <a href="#reviews" data-i18n="nav_reviews">Reseñas</a>
+        <a href="#contact" data-i18n="nav_contact">Contacto</a>
+        <button class="schedule-btn" id="scheduleBtn"><svg class="icon"><use href="#i-clock"/></svg> <span data-i18n="nav_schedule">Horario</span></button>
+      </div>
+      <div class="lang-toggle" id="langToggle">
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="ca">CA</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-logo-wrap">
+        <img src="./LOGO.png" alt="Logo Bel·la Estètica i Estilistes" />
+      </div>
+      <h1>Bel·la <span class="accent">Estètica</span><br/>i Estilistes</h1>
+      <p class="hero-sub">Vilafranca del Penedès</p>
+      <div class="hero-rating">
+        <span class="stars">★★★★★</span>
+        <span data-i18n="hero_rating">5.0 — Más de 130 reseñas</span>
+      </div>
+      <div class="hero-btns">
+        <a href="https://booksy.com/es-es/131916_bel-la-estetica-i-estilistes_salon-de-unas_48509_vilafranca-del-penedes#ba_s=seo" target="_blank" rel="noopener" class="btn btn-gold"><svg class="icon"><use href="#i-calendar"/></svg> <span data-i18n="hero_book">Reservar Cita</span></a>
+        <a href="#about" class="btn btn-outline" data-i18n="hero_discover">Descubrir</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about section-pad-lg" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal">
+          <img src="./EQUIPO2.jpeg" alt="Equipo Bel·la" />
+          <div class="about-img-accent"></div>
+        </div>
+        <div class="about-text reveal">
+          <p class="section-label" data-i18n="about_label">Sobre Nosotros</p>
+          <h3 data-i18n="about_title">Tu Refugio de Cuidado Personal en&nbsp;Vilafranca</h3>
+          <p data-i18n="about_p1">En el corazón de Vilafranca del Penedès, nace <strong>Bel·la Estètica i Estilistes</strong>, un concepto moderno y vanguardista dedicado íntegramente al bienestar y la imagen personal.</p>
+          <p data-i18n="about_p2">Nuestro salón no es solo una peluquería o un centro de estética; es un espacio diseñado para quienes buscan la excelencia técnica sin renunciar a un trato humano, cálido y totalmente personalizado.</p>
+          <div class="about-stats">
+            <div>
+              <div class="about-stat-num">5.0</div>
+              <div class="about-stat-label" data-i18n="about_stars">Estrellas</div>
+            </div>
+            <div>
+              <div class="about-stat-num">130+</div>
+              <div class="about-stat-label" data-i18n="about_reviews">Reseñas</div>
+            </div>
+            <div>
+              <div class="about-stat-num">4</div>
+              <div class="about-stat-label" data-i18n="about_experts">Especialistas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TEAM ===== -->
+  <section class="team section-pad" id="team">
+    <div class="container text-center">
+      <p class="section-label reveal" data-i18n="team_label">Nuestro Equipo</p>
+      <h2 class="section-title reveal" data-i18n="team_title">Profesionalidad y&nbsp;Cercanía</h2>
+      <hr class="gold-line reveal" />
+      <p class="section-subtitle reveal" data-i18n="team_subtitle">Cada uno de nuestros especialistas aporta su maestría y visión para que, desde el momento en que cruzas nuestra puerta, te sientas en las mejores manos.</p>
+      <div class="team-grid">
+        <div class="team-card reveal" data-modal="modal-eloi">
+          <div class="team-avatar">E</div>
+          <h4>Eloi</h4>
+          <p data-i18n="team_eloi_role">Barbería &amp; Peluquería</p>
+          <span class="team-cta" data-i18n="team_cta">Ver servicios →</span>
+        </div>
+        <div class="team-card reveal" data-modal="modal-ruben">
+          <div class="team-avatar">R</div>
+          <h4>Rubén</h4>
+          <p data-i18n="team_ruben_role">Barbería &amp; Peluquería</p>
+          <span class="team-cta" data-i18n="team_cta">Ver servicios →</span>
+        </div>
+        <div class="team-card reveal" data-modal="modal-susana">
+          <div class="team-avatar">S</div>
+          <h4>Susana</h4>
+          <p data-i18n="team_susana_role">Estética &amp; Bienestar</p>
+          <span class="team-cta" data-i18n="team_cta">Ver servicios →</span>
+        </div>
+        <div class="team-card reveal" data-modal="modal-ivet">
+          <div class="team-avatar">I</div>
+          <h4>Ivet</h4>
+          <p data-i18n="team_ivet_role">Belleza &amp; Depilación</p>
+          <span class="team-cta" data-i18n="team_cta">Ver servicios →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== IMAGE BREAK — TRABAJO 1 ===== -->
+  <div class="img-break reveal">
+    <img src="./TRABAJO1.jpeg" alt="Trabajo Bel·la" />
+    <div class="img-break-overlay"></div>
+  </div>
+
+  <!-- ===== SERVICES OVERVIEW ===== -->
+  <section class="services section-pad-lg" id="services">
+    <div class="container text-center">
+      <p class="section-label reveal" data-i18n="svc_label">Servicios</p>
+      <h2 class="section-title reveal" data-i18n="svc_title">Excelencia en cada&nbsp;Detalle</h2>
+      <hr class="gold-line reveal" />
+      <p class="section-subtitle reveal" data-i18n="svc_subtitle">Desde cortes de vanguardia hasta los tratamientos más exclusivos de bienestar corporal y facial.</p>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <span class="service-icon"><svg><use href="#i-scissors"/></svg></span>
+          <h4 data-i18n="svc_hair">Peluquería</h4>
+          <p data-i18n="svc_hair_desc">Cortes de cabello, mechas, color y arreglo de barba de la mano de Eloi y Rubén. Estilo y precisión al detalle.</p>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon"><svg><use href="#i-sparkles"/></svg></span>
+          <h4 data-i18n="svc_facial">Tratamientos Faciales</h4>
+          <p data-i18n="svc_facial_desc">Hidrafacial, higiene facial con vitaminas, rituales de luz serena y armonía de chakras. Tu piel, renovada.</p>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon"><svg><use href="#i-hand"/></svg></span>
+          <h4 data-i18n="svc_nails">Manicura &amp; Pedicura</h4>
+          <p data-i18n="svc_nails_desc">Semipermanente, gel, decoración, francesa… Manos y pies perfectos con Susana e Ivet.</p>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon"><svg><use href="#i-heart"/></svg></span>
+          <h4 data-i18n="svc_massage">Masajes &amp; Corporal</h4>
+          <p data-i18n="svc_massage_desc">Maderoterapia, drenaje linfático, presoterapia y rituales corporales exclusivos para tu bienestar.</p>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon"><svg><use href="#i-leaf"/></svg></span>
+          <h4 data-i18n="svc_wax">Depilación</h4>
+          <p data-i18n="svc_wax_desc">Depilación con cera y láser para todas las zonas. Tratamientos profesionales y duraderos.</p>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon"><svg><use href="#i-gift"/></svg></span>
+          <h4 data-i18n="svc_gift">Vales Regalo</h4>
+          <p data-i18n="svc_gift_desc">El regalo perfecto. Regala bienestar y belleza con nuestros vales personalizados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== IMAGE BREAK — TRABAJO 2 ===== -->
+  <div class="img-break reveal">
+    <img src="./TRABAJO2.jpeg" alt="Trabajo Bel·la" />
+    <div class="img-break-overlay"></div>
+  </div>
+
+  <!-- ===== MASSAGE / VIDEO SECTION ===== -->
+  <section class="massage section-pad-lg" id="massage">
+    <div class="container">
+      <div class="massage-grid">
+        <div class="massage-video-wrap reveal">
+          <video autoplay loop muted playsinline>
+            <source src="./0305.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="massage-text reveal">
+          <p class="section-label" data-i18n="massage_label">Bienestar Corporal</p>
+          <h3 data-i18n="massage_title">Masajes &amp; Tratamientos&nbsp;Corporales</h3>
+          <p data-i18n="massage_desc">Déjate llevar por las manos expertas de Susana. Cada sesión está diseñada para liberar tensión, mejorar la circulación y reconectar cuerpo y mente.</p>
+          <ul class="massage-list">
+            <li>
+              <span><svg class="icon"><use href="#i-heart"/></svg> <span data-i18n="massage_item1">Maderoterapia</span></span>
+              <span class="price">45,00 €</span>
+            </li>
+            <li>
+              <span><svg class="icon"><use href="#i-droplet"/></svg> <span data-i18n="massage_item2">Drenaje Linfático Manual</span></span>
+              <span class="price">45,00 €</span>
+            </li>
+            <li>
+              <span><svg class="icon"><use href="#i-zap"/></svg> <span data-i18n="massage_item3">Presoterapia x10 sesiones</span></span>
+              <span class="price">120,00 €</span>
+            </li>
+            <li>
+              <span><svg class="icon"><use href="#i-coffee"/></svg> <span data-i18n="massage_item4">Ritual Cappuccino Corporal</span></span>
+              <span class="price">45,00 €</span>
+            </li>
+            <li>
+              <span><svg class="icon"><use href="#i-droplet"/></svg> <span data-i18n="massage_item5">Pack Drenaje Linfático</span></span>
+              <span class="price">200,00 €</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS ===== -->
+  <section class="reviews section-pad-lg" id="reviews">
+    <div class="container text-center">
+      <p class="section-label reveal" data-i18n="reviews_label">Reseñas</p>
+      <h2 class="section-title reveal" data-i18n="reviews_title">Lo que dicen nuestros&nbsp;Clientes</h2>
+      <hr class="gold-line reveal" />
+      <p class="section-subtitle reveal" data-i18n="reviews_subtitle">La confianza de más de 130 clientes nos respalda con una valoración perfecta de 5.0 estrellas.</p>
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <blockquote>"¡Encantadísima! Masaje relajante con Susana, es una pasada de verdad. He probado muchos sitios y como ella nadie, cómo trabaja, cómo cuida cada detalle, su actitud… ¡Es un 10!"</blockquote>
+          <div class="review-author">
+            <div class="review-author-avatar">M</div>
+            <div>
+              <div class="review-author-name">María</div>
+              <div class="review-author-service">Masaje relajante 60 min — Susana</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <blockquote>"Trabajo impecable y muy profesional. Cuidó cada detalle y el resultado quedó precioso, mucho mejor de lo que imaginaba. Sin duda, una experiencia de 5 estrellas. ¡Repetiré!"</blockquote>
+          <div class="review-author">
+            <div class="review-author-avatar">I</div>
+            <div>
+              <div class="review-author-name">Issi</div>
+              <div class="review-author-service">Manicura semipermanente — Ivet</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <blockquote>"Excelente servicio. Gran profesionalidad y un ambiente que te hace sentir cómodo desde el primer momento."</blockquote>
+          <div class="review-author">
+            <div class="review-author-avatar">L</div>
+            <div>
+              <div class="review-author-name">Lluís</div>
+              <div class="review-author-service">Corte + lavado + barba — Eloi</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <blockquote>"Gran profesional, con ambiente relajante. Una experiencia que merece la pena repetir sin duda alguna."</blockquote>
+          <div class="review-author">
+            <div class="review-author-avatar">J</div>
+            <div>
+              <div class="review-author-name">Juan Francisco</div>
+              <div class="review-author-service">Corte + lavado + barba — Rubén</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EQUIPO 3 BANNER ===== -->
+  <div class="img-break reveal">
+    <img src="./EQUIPO3.png" alt="Equipo Bel·la" />
+    <div class="img-break-overlay"></div>
+  </div>
+
+  <!-- ===== GIFT CARDS ===== -->
+  <section class="giftcards section-pad-lg" id="giftcards">
+    <div class="container text-center">
+      <p class="section-label reveal" data-i18n="gift_label">Regala Bienestar</p>
+      <h2 class="section-title reveal"><svg class="icon" style="width:28px;height:28px;vertical-align:-4px;color:var(--gold)"><use href="#i-gift"/></svg> <span data-i18n="gift_title">Vales Regalo</span></h2>
+      <hr class="gold-line reveal" />
+      <div class="giftcards-content reveal">
+        <p data-i18n="gift_desc">El regalo perfecto para esa persona especial. Nuestros vales regalo te permiten regalar una experiencia única de belleza y bienestar en Bel·la.</p>
+        <div class="giftcards-note">
+          <p><svg class="icon" style="color:var(--gold)"><use href="#i-smartphone"/></svg> <span data-i18n="gift_note1">Las citas con vale regalo se gestionan <strong>exclusivamente por WhatsApp</strong>.</span></p>
+          <p><svg class="icon" style="color:var(--gold)"><use href="#i-alert"/></svg> <span data-i18n="gift_note2">No se aceptan reservas con vale regalo realizadas desde Booksy.</span></p>
+          <p><svg class="icon" style="color:var(--gold)"><use href="#i-file"/></svg> <span data-i18n="gift_note3">Es obligatorio indicar el nombre de la profesional con la que se adquirió el vale.</span></p>
+        </div>
+        <br/>
+        <a href="https://wa.me/34667263508?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20vales%20regalo" target="_blank" rel="noopener" class="btn btn-gold"><svg class="icon"><use href="#i-message"/></svg> <span data-i18n="gift_btn">Consultar por WhatsApp</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact section-pad-lg" id="contact">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 50px;">
+        <p class="section-label reveal" data-i18n="contact_label">Contacto</p>
+        <h2 class="section-title reveal" data-i18n="contact_title">Ven a&nbsp;Visitarnos</h2>
+        <hr class="gold-line reveal" />
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3>Bel·la Estètica i&nbsp;Estilistes</h3>
+          <div class="contact-item">
+            <div class="contact-item-icon"><svg><use href="#i-map-pin"/></svg></div>
+            <div class="contact-item-text">
+              <p><strong data-i18n="contact_dir">Dirección</strong><br/>Avinguda de Tarragona, 11<br/>08720 Vilafranca del Penedès, Barcelona</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><svg><use href="#i-phone"/></svg></div>
+            <div class="contact-item-text">
+              <p><strong data-i18n="contact_phone">Teléfono</strong><br/><a href="tel:+34930155017">930 15 50 17</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><svg><use href="#i-message"/></svg></div>
+            <div class="contact-item-text">
+              <p><strong>WhatsApp</strong><br/><a href="https://wa.me/34667263508" target="_blank" rel="noopener">667 26 35 08</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><svg><use href="#i-camera"/></svg></div>
+            <div class="contact-item-text">
+              <p><strong>Instagram</strong><br/><a href="https://www.instagram.com/esteticaestilistes.bella/" target="_blank" rel="noopener">@esteticaestilistes.bella</a></p>
+            </div>
+          </div>
+          <div style="margin-top: 10px;">
+            <button class="schedule-btn" onclick="openModal('modal-schedule')"><svg class="icon"><use href="#i-clock"/></svg> <span data-i18n="contact_schedule_btn">Ver Horario Completo</span></button>
+          </div>
+        </div>
+        <div class="contact-map reveal">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.5!2d1.6963!3d41.3461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a490a7b0d0b0b7%3A0x0!2sAvinguda+de+Tarragona+11%2C+08720+Vilafranca+del+Pened%C3%A8s!5e0!3m2!1ses!2ses!4v1709600000000!5m2!1ses!2ses" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-social">
+        <a href="https://www.instagram.com/esteticaestilistes.bella/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-camera"/></svg></a>
+        <a href="https://wa.me/34667263508" target="_blank" rel="noopener" aria-label="WhatsApp"><svg><use href="#i-message"/></svg></a>
+        <a href="tel:+34930155017" aria-label="Teléfono"><svg><use href="#i-phone"/></svg></a>
+      </div>
+      <p data-i18n="footer_copy">&copy; 2026 <a href="#hero">Bel·la Estètica i Estilistes</a> — Vilafranca del Penedès</p>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING BOOKING BUTTON ===== -->
+  <a href="https://booksy.com/es-es/131916_bel-la-estetica-i-estilistes_salon-de-unas_48509_vilafranca-del-penedes#ba_s=seo" target="_blank" rel="noopener" class="fab-booking">
+    <svg class="icon"><use href="#i-calendar"/></svg> <span data-i18n="fab_book">Reservar Cita</span>
+  </a>
+
+  <!-- ===== MODALS ===== -->
+
+  <!-- SCHEDULE MODAL -->
+  <div class="modal-overlay" id="modal-schedule">
+    <div class="modal">
+      <div class="modal-header">
+        <h3><svg class="icon" style="color:var(--gold)"><use href="#i-clock"/></svg> <span data-i18n="sched_title">Horario</span></h3>
+        <button class="modal-close" onclick="closeModal('modal-schedule')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="schedule-row"><span class="day">Lunes</span><span class="hours">09:00 – 19:00</span></div>
+        <div class="schedule-row"><span class="day">Martes</span><span class="hours">09:00 – 19:00</span></div>
+        <div class="schedule-row"><span class="day">Miércoles</span><span class="hours">09:00 – 19:00</span></div>
+        <div class="schedule-row"><span class="day">Jueves</span><span class="hours">09:00 – 19:00</span></div>
+        <div class="schedule-row"><span class="day">Viernes</span><span class="hours">09:00 – 19:00</span></div>
+        <div class="schedule-row"><span class="day">Sábado</span><span class="closed">CERRADO</span></div>
+        <div class="schedule-row"><span class="day">Domingo</span><span class="closed">CERRADO</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ELOI MODAL -->
+  <div class="modal-overlay" id="modal-eloi">
+    <div class="modal">
+      <div class="modal-header">
+        <h3><svg class="icon" style="color:var(--gold)"><use href="#i-scissors"/></svg> <span data-i18n="modal_eloi">Servicios de Eloi</span></h3>
+        <button class="modal-close" onclick="closeModal('modal-eloi')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="service-group">
+          <h5>Corte de Cabello</h5>
+          <div class="svc-row">
+            <span class="svc-name">Corte solo a tijeras + lavado</span>
+            <span class="svc-dur">40 min</span>
+            <span class="svc-price">17,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Corte + lavado</span>
+            <span class="svc-dur">30 min</span>
+            <span class="svc-price">15,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Corte + lavado + cejas</span>
+            <span class="svc-dur">30 min</span>
+            <span class="svc-price">17,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Corte + lavado + arreglo de barba</span>
+            <span class="svc-dur">45 min</span>
+            <span class="svc-price">20,00 €</span>
+          </div>
+        </div>
+        <div class="service-group">
+          <h5>Color</h5>
+          <div class="svc-row">
+            <span class="svc-name">Mechas</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">35,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Color + corte + lavado</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">65,00 €</span>
+          </div>
+        </div>
+        <div class="service-group">
+          <h5>Barba</h5>
+          <div class="svc-row">
+            <span class="svc-name">Arreglo de barba</span>
+            <span class="svc-dur">15 min</span>
+            <span class="svc-price">10,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Tinte de barba</span>
+            <span class="svc-dur">10 min</span>
+            <span class="svc-price">10,00 €</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUBÉN MODAL -->
+  <div class="modal-overlay" id="modal-ruben">
+    <div class="modal">
+      <div class="modal-header">
+        <h3><svg class="icon" style="color:var(--gold)"><use href="#i-scissors"/></svg> <span data-i18n="modal_ruben">Servicios de Rubén</span></h3>
+        <button class="modal-close" onclick="closeModal('modal-ruben')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="service-group">
+          <h5>Corte de Cabello</h5>
+          <div class="svc-row">
+            <span class="svc-name">Corte solo a tijeras + lavado</span>
+            <span class="svc-dur">40 min</span>
+            <span class="svc-price">17,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Corte + lavado</span>
+            <span class="svc-dur">30 min</span>
+            <span class="svc-price">15,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Corte + lavado + cejas</span>
+            <span class="svc-dur">30 min</span>
+            <span class="svc-price">17,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Corte + lavado + arreglo de barba</span>
+            <span class="svc-dur">45 min</span>
+            <span class="svc-price">20,00 €</span>
+          </div>
+        </div>
+        <div class="service-group">
+          <h5>Color</h5>
+          <div class="svc-row">
+            <span class="svc-name">Mechas</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">35,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Color + corte + lavado</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">65,00 €</span>
+          </div>
+        </div>
+        <div class="service-group">
+          <h5>Barba</h5>
+          <div class="svc-row">
+            <span class="svc-name">Arreglo de barba</span>
+            <span class="svc-dur">15 min</span>
+            <span class="svc-price">10,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Tinte de barba</span>
+            <span class="svc-dur">10 min</span>
+            <span class="svc-price">10,00 €</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUSANA MODAL -->
+  <div class="modal-overlay" id="modal-susana">
+    <div class="modal">
+      <div class="modal-header">
+        <h3><svg class="icon" style="color:var(--gold)"><use href="#i-sparkles"/></svg> <span data-i18n="modal_susana">Servicios de Susana</span></h3>
+        <button class="modal-close" onclick="closeModal('modal-susana')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="service-group">
+          <h5>Tratamientos Faciales</h5>
+          <div class="svc-row">
+            <span class="svc-name">Higiene facial básica</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">45,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Higiene facial + vitamina</span>
+            <span class="svc-dur">1 h 15 min</span>
+            <span class="svc-price">50,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Hidrafacial</span>
+            <span class="svc-dur">1 h 15 min</span>
+            <span class="svc-price">70,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Facial respiro puro 🫧</span>
+            <span class="svc-dur">1 h 15 min</span>
+            <span class="svc-price">55,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Ritual facial Luz serena ✨</span>
+            <span class="svc-dur">1 h 15 min</span>
+            <span class="svc-price">60,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Ritual facial armonía chakras</span>
+            <span class="svc-dur">1 h 15 min</span>
+            <span class="svc-price">50,00 €</span>
+          </div>
+        </div>
+        <div class="service-group">
+          <h5>Belleza de Manos y Pies</h5>
+          <div class="svc-row">
+            <span class="svc-name">Manicura semiperm. color liso</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">25,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Manicura semiperm. + refuerzo</span>
+            <span class="svc-dur">1 h 15 min</span>
+            <span class="svc-price">30,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Pedicura express semiperm.</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">25,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Pedicura completa semiperm.</span>
+            <span class="svc-dur">1 h 15 min</span>
+            <span class="svc-price">35,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Pedicura express + francesa</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">28,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Pedicura completa + francesa</span>
+            <span class="svc-dur">1 h 15 min</span>
+            <span class="svc-price">38,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Retirar semiperm. + manicura</span>
+            <span class="svc-dur">30 min</span>
+            <span class="svc-price">10,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Pedicura completa sin esmalte</span>
+            <span class="svc-dur">45 min</span>
+            <span class="svc-price">30,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Retirar semiperm. pies</span>
+            <span class="svc-dur">30 min</span>
+            <span class="svc-price">10,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Retirar Gel X / Acrílico + manicura</span>
+            <span class="svc-dur">45 min</span>
+            <span class="svc-price">15,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Manicura masculina semiperm.</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">25,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Manicura masculina sin esmaltar</span>
+            <span class="svc-dur">45 min</span>
+            <span class="svc-price">20,00 €</span>
+          </div>
+        </div>
+        <div class="service-group">
+          <h5>Tratamientos Corporales</h5>
+          <div class="svc-row">
+            <span class="svc-name">Maderoterapia</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">45,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Presoterapia x10 sesiones</span>
+            <span class="svc-dur">30 min</span>
+            <span class="svc-price">120,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Drenaje Linfático Manual</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">45,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Pack Drenaje Linfático Manual</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">200,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Ritual cappuccino corporal</span>
+            <span class="svc-dur">1 h 15 min</span>
+            <span class="svc-price">45,00 €</span>
+          </div>
+        </div>
+        <div class="service-group">
+          <h5>Depilación Láser</h5>
+          <div class="svc-row">
+            <span class="svc-name">Tórax</span>
+            <span class="svc-dur">45 min</span>
+            <span class="svc-price">70,00 €</span>
+          </div>
+        </div>
+        <div class="service-group">
+          <h5>Depilación Cera</h5>
+          <div class="svc-row">
+            <span class="svc-name">Axilas, pubis, piernas enteras mujer</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">37,50 €</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IVET MODAL -->
+  <div class="modal-overlay" id="modal-ivet">
+    <div class="modal">
+      <div class="modal-header">
+        <h3><svg class="icon" style="color:var(--gold)"><use href="#i-hand"/></svg> <span data-i18n="modal_ivet">Servicios de Ivet</span></h3>
+        <button class="modal-close" onclick="closeModal('modal-ivet')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="service-group">
+          <h5>Belleza de Manos y Pies</h5>
+          <div class="svc-row">
+            <span class="svc-name">Manicura semiperm. color liso</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">25,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Manicura semiperm. + refuerzo</span>
+            <span class="svc-dur">1 h 15 min</span>
+            <span class="svc-price">30,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Manicura semiperm. + decoración</span>
+            <span class="svc-dur">1 h 15 min</span>
+            <span class="svc-price">28,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Manicura refuerzo + decoración</span>
+            <span class="svc-dur">1 h 15 min</span>
+            <span class="svc-price">33,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Gel</span>
+            <span class="svc-dur">1 h 30 min</span>
+            <span class="svc-price">35,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Gel + decoración</span>
+            <span class="svc-dur">1 h 45 min</span>
+            <span class="svc-price">40,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Pedicura express semiperm.</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">25,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Pedicura completa semiperm.</span>
+            <span class="svc-dur">1 h 15 min</span>
+            <span class="svc-price">35,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Pedicura express + francesa</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">28,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Pedicura completa + francesa</span>
+            <span class="svc-dur">1 h 15 min</span>
+            <span class="svc-price">38,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Retirar semiperm. + manicura</span>
+            <span class="svc-dur">30 min</span>
+            <span class="svc-price">10,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Pedicura completa sin esmalte</span>
+            <span class="svc-dur">45 min</span>
+            <span class="svc-price">30,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Retirar semiperm. pies</span>
+            <span class="svc-dur">30 min</span>
+            <span class="svc-price">10,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Retirar Gel X / Acrílico + manicura</span>
+            <span class="svc-dur">45 min</span>
+            <span class="svc-price">15,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Manicura masculina semiperm.</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">25,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Manicura masculina sin esmaltar</span>
+            <span class="svc-dur">45 min</span>
+            <span class="svc-price">20,00 €</span>
+          </div>
+        </div>
+        <div class="service-group">
+          <h5>Depilación Cera — Cuerpo Completo</h5>
+          <div class="svc-row">
+            <span class="svc-name">Axilas, pubis, piernas enteras mujer</span>
+            <span class="svc-dur">1 h</span>
+            <span class="svc-price">37,50 €</span>
+          </div>
+        </div>
+        <div class="service-group">
+          <h5>Depilación Cera — Facial</h5>
+          <div class="svc-row">
+            <span class="svc-name">Cejas</span>
+            <span class="svc-dur">15 min</span>
+            <span class="svc-price">9,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Labio superior</span>
+            <span class="svc-dur">10 min</span>
+            <span class="svc-price">5,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Mentón</span>
+            <span class="svc-dur">10 min</span>
+            <span class="svc-price">5,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Cejas + labio superior</span>
+            <span class="svc-dur">20 min</span>
+            <span class="svc-price">11,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Patillas</span>
+            <span class="svc-dur">15 min</span>
+            <span class="svc-price">7,00 €</span>
+          </div>
+        </div>
+        <div class="service-group">
+          <h5>Depilación Cera — Brazos</h5>
+          <div class="svc-row">
+            <span class="svc-name">Axilas</span>
+            <span class="svc-dur">15 min</span>
+            <span class="svc-price">7,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Antebrazo mujer</span>
+            <span class="svc-dur">15 min</span>
+            <span class="svc-price">10,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">½ brazo hombre</span>
+            <span class="svc-dur">20 min</span>
+            <span class="svc-price">12,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Axilares hombre</span>
+            <span class="svc-dur">15 min</span>
+            <span class="svc-price">10,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">½ brazo mujer</span>
+            <span class="svc-dur">20 min</span>
+            <span class="svc-price">12,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Brazos completos hombre</span>
+            <span class="svc-dur">25 min</span>
+            <span class="svc-price">16,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Brazos completos mujer</span>
+            <span class="svc-dur">25 min</span>
+            <span class="svc-price">14,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Hombros</span>
+            <span class="svc-dur">15 min</span>
+            <span class="svc-price">8,00 €</span>
+          </div>
+        </div>
+        <div class="service-group">
+          <h5>Depilación Cera — Zona Inferior</h5>
+          <div class="svc-row">
+            <span class="svc-name">Ingle mujer</span>
+            <span class="svc-dur">15 min</span>
+            <span class="svc-price">8,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Ingle brasileña</span>
+            <span class="svc-dur">20 min</span>
+            <span class="svc-price">12,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Cartucheras</span>
+            <span class="svc-dur">15 min</span>
+            <span class="svc-price">8,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Pubis completo mujer</span>
+            <span class="svc-dur">25 min</span>
+            <span class="svc-price">14,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Zona perianal mujer</span>
+            <span class="svc-dur">10 min</span>
+            <span class="svc-price">7,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Glúteos mujer</span>
+            <span class="svc-dur">20 min</span>
+            <span class="svc-price">10,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Glúteos hombre</span>
+            <span class="svc-dur">20 min</span>
+            <span class="svc-price">12,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Espalda</span>
+            <span class="svc-dur">30 min</span>
+            <span class="svc-price">18,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Tórax</span>
+            <span class="svc-dur">25 min</span>
+            <span class="svc-price">16,00 €</span>
+          </div>
+        </div>
+        <div class="service-group">
+          <h5>Depilación Cera — Piernas</h5>
+          <div class="svc-row">
+            <span class="svc-name">Medias piernas hombre</span>
+            <span class="svc-dur">25 min</span>
+            <span class="svc-price">14,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Medias piernas mujer</span>
+            <span class="svc-dur">25 min</span>
+            <span class="svc-price">12,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Piernas enteras hombre</span>
+            <span class="svc-dur">40 min</span>
+            <span class="svc-price">20,00 €</span>
+          </div>
+          <div class="svc-row">
+            <span class="svc-name">Piernas enteras mujer</span>
+            <span class="svc-dur">35 min</span>
+            <span class="svc-price">18,00 €</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== COOKIE BANNER ===== -->
+  <div class="cookie-banner" id="cookieBanner">
+    <p><span data-i18n="cookie_text">Utilizamos cookies propias y de terceros para mejorar tu experiencia de navegación y analizar el tráfico. Al hacer clic en «Aceptar» consientes el uso de todas las cookies.</span> <a href="#" data-i18n="cookie_more">Más información</a></p>
+    <div class="cookie-btns">
+      <button class="cookie-btn cookie-btn-accept" id="cookieAccept" data-i18n="cookie_accept">Aceptar</button>
+      <button class="cookie-btn cookie-btn-reject" id="cookieReject" data-i18n="cookie_reject">Rechazar</button>
+    </div>
+  </div>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    /* ---------- NAVBAR SCROLL ---------- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* ---------- HAMBURGER ---------- */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    /* ---------- MODALS ---------- */
+    function openModal(id) {
+      const overlay = document.getElementById(id);
+      if (overlay) {
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    function closeModal(id) {
+      const overlay = document.getElementById(id);
+      if (overlay) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+    // Close on overlay click
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', e => {
+        if (e.target === overlay) {
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(overlay => {
+          overlay.classList.remove('active');
+        });
+        document.body.style.overflow = '';
+      }
+    });
+
+    /* ---------- TEAM CARDS → OPEN MODAL ---------- */
+    document.querySelectorAll('.team-card[data-modal]').forEach(card => {
+      card.addEventListener('click', () => {
+        openModal(card.dataset.modal);
+      });
+    });
+
+    /* ---------- SCHEDULE BUTTON (navbar) ---------- */
+    document.getElementById('scheduleBtn').addEventListener('click', () => {
+      openModal('modal-schedule');
+    });
+
+    /* ---------- SCROLL REVEAL ---------- */
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    /* ---------- COUNTER ANIMATION ---------- */
+    const counters = document.querySelectorAll('.about-stat-num');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const text = el.textContent.trim();
+          const suffix = text.replace(/[\d.]/g, '');
+          const target = parseFloat(text);
+          const isFloat = text.includes('.');
+          let current = 0;
+          const step = target / 50;
+          const interval = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(interval);
+            }
+            el.textContent = (isFloat ? current.toFixed(1) : Math.floor(current)) + suffix;
+          }, 30);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => counterObserver.observe(c));
+
+    /* ---------- COOKIE CONSENT ---------- */
+    (function() {
+      if (localStorage.getItem('bella_cookies')) return;
+      const banner = document.getElementById('cookieBanner');
+      setTimeout(() => banner.classList.add('visible'), 1200);
+      document.getElementById('cookieAccept').addEventListener('click', () => {
+        localStorage.setItem('bella_cookies', 'accepted');
+        banner.classList.remove('visible');
+      });
+      document.getElementById('cookieReject').addEventListener('click', () => {
+        localStorage.setItem('bella_cookies', 'rejected');
+        banner.classList.remove('visible');
+      });
+    })();
+
+    /* ==========  i18n — ES / CA  ========== */
+    (function(){
+      var T = {
+        es: {
+          nav_about:'Nosotros', nav_team:'Equipo', nav_services:'Servicios',
+          nav_reviews:'Reseñas', nav_contact:'Contacto', nav_schedule:'Horario',
+          hero_rating:'5.0 — Más de 130 reseñas', hero_book:'Reservar Cita', hero_discover:'Descubrir',
+          about_label:'Sobre Nosotros',
+          about_title:'Tu Refugio de Cuidado Personal en&nbsp;Vilafranca',
+          about_p1:'En el corazón de Vilafranca del Penedès, nace <strong>Bel·la Estètica i Estilistes</strong>, un concepto moderno y vanguardista dedicado íntegramente al bienestar y la imagen personal.',
+          about_p2:'Nuestro salón no es solo una peluquería o un centro de estética; es un espacio diseñado para quienes buscan la excelencia técnica sin renunciar a un trato humano, cálido y totalmente personalizado.',
+          about_stars:'Estrellas', about_reviews:'Reseñas', about_experts:'Especialistas',
+          team_label:'Nuestro Equipo',
+          team_title:'Profesionalidad y&nbsp;Cercanía',
+          team_subtitle:'Cada uno de nuestros especialistas aporta su maestría y visión para que, desde el momento en que cruzas nuestra puerta, te sientas en las mejores manos.',
+          team_eloi_role:'Barbería &amp; Peluquería',
+          team_ruben_role:'Barbería &amp; Peluquería',
+          team_susana_role:'Estética &amp; Bienestar',
+          team_ivet_role:'Belleza &amp; Depilación',
+          team_cta:'Ver servicios →',
+          svc_label:'Servicios',
+          svc_title:'Excelencia en cada&nbsp;Detalle',
+          svc_subtitle:'Desde cortes de vanguardia hasta los tratamientos más exclusivos de bienestar corporal y facial.',
+          svc_hair:'Peluquería',
+          svc_hair_desc:'Cortes de cabello, mechas, color y arreglo de barba de la mano de Eloi y Rubén. Estilo y precisión al detalle.',
+          svc_facial:'Tratamientos Faciales',
+          svc_facial_desc:'Hidrafacial, higiene facial con vitaminas, rituales de luz serena y armonía de chakras. Tu piel, renovada.',
+          svc_nails:'Manicura &amp; Pedicura',
+          svc_nails_desc:'Semipermanente, gel, decoración, francesa… Manos y pies perfectos con Susana e Ivet.',
+          svc_massage:'Masajes &amp; Corporal',
+          svc_massage_desc:'Maderoterapia, drenaje linfático, presoterapia y rituales corporales exclusivos para tu bienestar.',
+          svc_wax:'Depilación',
+          svc_wax_desc:'Depilación con cera y láser para todas las zonas. Tratamientos profesionales y duraderos.',
+          svc_gift:'Vales Regalo',
+          svc_gift_desc:'El regalo perfecto. Regala bienestar y belleza con nuestros vales personalizados.',
+          massage_label:'Bienestar Corporal',
+          massage_title:'Masajes &amp; Tratamientos&nbsp;Corporales',
+          massage_desc:'Déjate llevar por las manos expertas de Susana. Cada sesión está diseñada para liberar tensión, mejorar la circulación y reconectar cuerpo y mente.',
+          massage_item1:'Maderoterapia', massage_item2:'Drenaje Linfático Manual',
+          massage_item3:'Presoterapia x10 sesiones', massage_item4:'Ritual Cappuccino Corporal',
+          massage_item5:'Pack Drenaje Linfático',
+          reviews_label:'Reseñas',
+          reviews_title:'Lo que dicen nuestros&nbsp;Clientes',
+          reviews_subtitle:'La confianza de más de 130 clientes nos respalda con una valoración perfecta de 5.0 estrellas.',
+          gift_label:'Regala Bienestar', gift_title:'Vales Regalo',
+          gift_desc:'El regalo perfecto para esa persona especial. Nuestros vales regalo te permiten regalar una experiencia única de belleza y bienestar en Bel·la.',
+          gift_note1:'Las citas con vale regalo se gestionan <strong>exclusivamente por WhatsApp</strong>.',
+          gift_note2:'No se aceptan reservas con vale regalo realizadas desde Booksy.',
+          gift_note3:'Es obligatorio indicar el nombre de la profesional con la que se adquirió el vale.',
+          gift_btn:'Consultar por WhatsApp',
+          contact_label:'Contacto',
+          contact_title:'Ven a&nbsp;Visitarnos',
+          contact_dir:'Dirección', contact_phone:'Teléfono',
+          contact_schedule_btn:'Ver Horario Completo',
+          footer_copy:'&copy; 2026 <a href="#hero">Bel·la Estètica i Estilistes</a> — Vilafranca del Penedès',
+          fab_book:'Reservar Cita',
+          sched_title:'Horario',
+          sched_mon:'Lunes', sched_tue:'Martes', sched_wed:'Miércoles',
+          sched_thu:'Jueves', sched_fri:'Viernes', sched_sat:'Sábado', sched_sun:'Domingo',
+          sched_closed:'CERRADO',
+          modal_eloi:'Servicios de Eloi', modal_ruben:'Servicios de Rubén',
+          modal_susana:'Servicios de Susana', modal_ivet:'Servicios de Ivet',
+          grp_haircut:'Corte de Cabello', grp_color:'Color', grp_beard:'Barba',
+          grp_facial:'Tratamientos Faciales', grp_hands:'Belleza de Manos y Pies',
+          grp_body:'Tratamientos Corporales', grp_laser:'Depilación Láser', grp_wax:'Depilación Cera',
+          grp_wax_full:'Depilación Cera — Cuerpo Completo', grp_wax_face:'Depilación Cera — Facial',
+          grp_wax_arms:'Depilación Cera — Brazos', grp_wax_lower:'Depilación Cera — Zona Inferior',
+          grp_wax_legs:'Depilación Cera — Piernas',
+          cookie_text:'Utilizamos cookies propias y de terceros para mejorar tu experiencia de navegación y analizar el tráfico. Al hacer clic en «Aceptar» consientes el uso de todas las cookies.',
+          cookie_more:'Más información', cookie_accept:'Aceptar', cookie_reject:'Rechazar'
+        },
+        ca: {
+          nav_about:'Nosaltres', nav_team:'Equip', nav_services:'Serveis',
+          nav_reviews:'Ressenyes', nav_contact:'Contacte', nav_schedule:'Horari',
+          hero_rating:'5.0 — Més de 130 ressenyes', hero_book:'Reservar Cita', hero_discover:'Descobrir',
+          about_label:'Sobre Nosaltres',
+          about_title:'El teu Refugi de Cura Personal a&nbsp;Vilafranca',
+          about_p1:'Al cor de Vilafranca del Penedès, neix <strong>Bel·la Estètica i Estilistes</strong>, un concepte modern i avantguardista dedicat íntegrament al benestar i la imatge personal.',
+          about_p2:'El nostre saló no és només una perruqueria o un centre d\'estètica; és un espai dissenyat per a qui busca l\'excel·lència tècnica sense renunciar a un tracte humà, càlid i totalment personalitzat.',
+          about_stars:'Estrelles', about_reviews:'Ressenyes', about_experts:'Especialistes',
+          team_label:'El nostre Equip',
+          team_title:'Professionalitat i&nbsp;Proximitat',
+          team_subtitle:'Cadascun dels nostres especialistes aporta la seva mestria i visió perquè, des del moment en què creues la nostra porta, et sentis en les millors mans.',
+          team_eloi_role:'Barberia &amp; Perruqueria',
+          team_ruben_role:'Barberia &amp; Perruqueria',
+          team_susana_role:'Estètica &amp; Benestar',
+          team_ivet_role:'Bellesa &amp; Depilació',
+          team_cta:'Veure serveis →',
+          svc_label:'Serveis',
+          svc_title:'Excel·lència en cada&nbsp;Detall',
+          svc_subtitle:'Des de talls d\'avantguarda fins als tractaments més exclusius de benestar corporal i facial.',
+          svc_hair:'Perruqueria',
+          svc_hair_desc:'Talls de cabell, metxes, color i arranjament de barba de la mà d\'Eloi i Rubén. Estil i precisió al detall.',
+          svc_facial:'Tractaments Facials',
+          svc_facial_desc:'Hidrafacial, higiene facial amb vitamines, rituals de llum serena i harmonia de xacres. La teva pell, renovada.',
+          svc_nails:'Manicura &amp; Pedicura',
+          svc_nails_desc:'Semipermanent, gel, decoració, francesa… Mans i peus perfectes amb Susana i Ivet.',
+          svc_massage:'Massatges &amp; Corporal',
+          svc_massage_desc:'Maderoteràpia, drenatge limfàtic, pressoteràpia i rituals corporals exclusius per al teu benestar.',
+          svc_wax:'Depilació',
+          svc_wax_desc:'Depilació amb cera i làser per a totes les zones. Tractaments professionals i duradors.',
+          svc_gift:'Vals Regal',
+          svc_gift_desc:'El regal perfecte. Regala benestar i bellesa amb els nostres vals personalitzats.',
+          massage_label:'Benestar Corporal',
+          massage_title:'Massatges i Tractaments&nbsp;Corporals',
+          massage_desc:'Deixa\'t portar per les mans expertes de Susana. Cada sessió està dissenyada per alliberar tensió, millorar la circulació i reconnectar cos i ment.',
+          massage_item1:'Maderoteràpia', massage_item2:'Drenatge Limfàtic Manual',
+          massage_item3:'Pressoteràpia x10 sessions', massage_item4:'Ritual Cappuccino Corporal',
+          massage_item5:'Pack Drenatge Limfàtic',
+          reviews_label:'Ressenyes',
+          reviews_title:'El que diuen els nostres&nbsp;Clients',
+          reviews_subtitle:'La confiança de més de 130 clients ens avala amb una valoració perfecta de 5.0 estrelles.',
+          gift_label:'Regala Benestar', gift_title:'Vals Regal',
+          gift_desc:'El regal perfecte per a aquella persona especial. Els nostres vals regal et permeten regalar una experiència única de bellesa i benestar a Bel·la.',
+          gift_note1:'Les cites amb val regal es gestionen <strong>exclusivament per WhatsApp</strong>.',
+          gift_note2:'No s\'accepten reserves amb val regal realitzades des de Booksy.',
+          gift_note3:'És obligatori indicar el nom de la professional amb qui es va adquirir el val.',
+          gift_btn:'Consultar per WhatsApp',
+          contact_label:'Contacte',
+          contact_title:'Vine a&nbsp;Visitar-nos',
+          contact_dir:'Adreça', contact_phone:'Telèfon',
+          contact_schedule_btn:'Veure Horari Complet',
+          footer_copy:'&copy; 2026 <a href="#hero">Bel·la Estètica i Estilistes</a> — Vilafranca del Penedès',
+          fab_book:'Reservar Cita',
+          sched_title:'Horari',
+          sched_mon:'Dilluns', sched_tue:'Dimarts', sched_wed:'Dimecres',
+          sched_thu:'Dijous', sched_fri:'Divendres', sched_sat:'Dissabte', sched_sun:'Diumenge',
+          sched_closed:'TANCAT',
+          modal_eloi:'Serveis d\'Eloi', modal_ruben:'Serveis de Rubén',
+          modal_susana:'Serveis de Susana', modal_ivet:'Serveis d\'Ivet',
+          grp_haircut:'Tall de Cabell', grp_color:'Color', grp_beard:'Barba',
+          grp_facial:'Tractaments Facials', grp_hands:'Bellesa de Mans i Peus',
+          grp_body:'Tractaments Corporals', grp_laser:'Depilació Làser', grp_wax:'Depilació Cera',
+          grp_wax_full:'Depilació Cera — Cos Complet', grp_wax_face:'Depilació Cera — Facial',
+          grp_wax_arms:'Depilació Cera — Braços', grp_wax_lower:'Depilació Cera — Zona Inferior',
+          grp_wax_legs:'Depilació Cera — Cames',
+          cookie_text:'Utilitzem cookies pròpies i de tercers per millorar la teva experiència de navegació i analitzar el trànsit. En fer clic a «Acceptar» consents l\'ús de totes les cookies.',
+          cookie_more:'Més informació', cookie_accept:'Acceptar', cookie_reject:'Rebutjar'
+        }
+      };
+
+      /* dynamically tag modal elements with data-i18n */
+      var modalGroups = {
+        'modal-eloi':   ['grp_haircut','grp_color','grp_beard'],
+        'modal-ruben':  ['grp_haircut','grp_color','grp_beard'],
+        'modal-susana': ['grp_facial','grp_hands','grp_body','grp_laser','grp_wax'],
+        'modal-ivet':   ['grp_hands','grp_wax_full','grp_wax_face','grp_wax_arms','grp_wax_lower','grp_wax_legs']
+      };
+      Object.keys(modalGroups).forEach(function(id){
+        var keys = modalGroups[id];
+        document.querySelectorAll('#'+id+' .service-group h5').forEach(function(h5,i){
+          if(keys[i]) h5.setAttribute('data-i18n', keys[i]);
+        });
+      });
+
+      var schedKeys = ['sched_mon','sched_tue','sched_wed','sched_thu','sched_fri','sched_sat','sched_sun'];
+      document.querySelectorAll('#modal-schedule .schedule-row').forEach(function(row,i){
+        var day = row.querySelector('.day');
+        if(day && schedKeys[i]) day.setAttribute('data-i18n', schedKeys[i]);
+        var closed = row.querySelector('.closed');
+        if(closed) closed.setAttribute('data-i18n', 'sched_closed');
+      });
+
+      function setLang(lang){
+        document.documentElement.lang = lang;
+        localStorage.setItem('bella_lang', lang);
+        document.querySelectorAll('.lang-btn').forEach(function(b){
+          b.classList.toggle('active', b.dataset.lang === lang);
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function(el){
+          var k = el.getAttribute('data-i18n');
+          if(T[lang] && T[lang][k] !== undefined) el.innerHTML = T[lang][k];
+        });
+      }
+
+      document.getElementById('langToggle').addEventListener('click', function(e){
+        var btn = e.target.closest('.lang-btn');
+        if(btn) setLang(btn.dataset.lang);
+      });
+
+      var saved = localStorage.getItem('bella_lang') ||
+                  (navigator.language && navigator.language.startsWith('ca') ? 'ca' : 'es');
+      setLang(saved);
+    })();
+  </script>
+
+</body>
+</html>
